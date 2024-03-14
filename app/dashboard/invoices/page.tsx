@@ -7,6 +7,12 @@ import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import { Suspense } from 'react';
 import { fetchInvoicesPages } from '@/app/lib/data';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Invoices',
+};
+
 export default async function Page({
   searchParams,
 }: {
@@ -20,7 +26,6 @@ export default async function Page({
 
   const totalPages = await fetchInvoicesPages(query);
 
-
   return (
     <div className="w-full">
       <div className="flex w-full items-center justify-between">
@@ -29,8 +34,8 @@ export default async function Page({
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
         <Search placeholder="Search invoices..." />
         <CreateInvoice />
-      </div> 
-        <Table query={query} currentPage={currentPage} />
+      </div>
+      <Table query={query} currentPage={currentPage} />
 
       <div className="mt-5 flex w-full justify-center">
         <Pagination totalPages={totalPages} />
